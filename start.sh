@@ -1,5 +1,5 @@
 #!/bin/sh
-ARQUIVO="/root/vpn.config"
+ARQUIVO="/root/$VPNFILE"
 
 # Setup masquerade, to allow using the container as a gateway
 for iface in $(ip a | grep eth | grep inet | awk '{print $2}'); do

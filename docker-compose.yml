@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     image: vpnbase
+    environment:
+      - VPNFILE=vpn01.config
     network_mode: "host"
     privileged: true
     volumes:
