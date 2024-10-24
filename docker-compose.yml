@@ -1,7 +1,8 @@
 version: "3.7"
 
 services:
-  forticlient:
+  vpn01:
+    container_name: vpn01
     build:
       context: .
       dockerfile: Dockerfile
