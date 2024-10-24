@@ -49,9 +49,59 @@ After ensuring Docker is installed, follow the steps below to configure and run 
 
 ---
 
-### Multiple VPNs
+### Multiple VPNs Setup
 
-To connect to multiple VPNs simultaneously, copy the project folder, modify the `vpn.config` file, and adjust the image name in the `docker-compose.yml` file for each VPN configuration.
+To connect to multiple VPNs simultaneously, modify the `docker-compose.yml` file by adding additional services like this:
+
+```yaml
+version: "3.7"
+
+services:
+  vpn01:
+    container_name: vpn01
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vpntrinus
+    environment:
+      - VPNFILE=vpn01.config
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - type: bind
+        source: ./
+        target: /root
+
+  vpn02:
+    container_name: vpn02
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vpntrinus
+    environment:
+      - VPNFILE=vpn02.config
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - type: bind
+        source: ./
+        target: /root
+```
+
+After correctly pointing to the VPN files, build the image again:
+```bash
+docker compose build
+```
+
+To run only one VPN:
+```bash
+docker compose up -d vpn01
+```
+
+Or to run all configured VPNs at once:
+```bash
+docker compose up -d 
+```
 
 After running the container, check the local routing table to confirm the configured VPN routes are active.
 
@@ -104,12 +154,62 @@ Após garantir que o Docker está instalado, siga os passos abaixo para configur
 
 ---
 
-### Múltiplas VPNs
+### Configuração de Múltiplas VPNs
 
-Para conectar múltiplas VPNs simultaneamente, copie a pasta do projeto, modifique o arquivo `vpn.config` e ajuste o nome da imagem no arquivo `docker-compose.yml` para cada configuração de VPN.
+Para conectar múltiplas VPNs simultaneamente, modifique o arquivo `docker-compose.yml` adicionando novos serviços conforme abaixo:
 
-Após rodar o container, confira a tabela de rotas locais para verificar se as rotas da VPN estão configuradas.
+```yaml
+version: "3.7"
+
+services:
+  vpn01:
+    container_name: vpn01
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vpntrinus
+    environment:
+      - VPNFILE=vpn01.config
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - type: bind
+        source: ./
+        target: /root
+
+  vpn02:
+    container_name: vpn02
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vpntrinus
+    environment:
+      - VPNFILE=vpn02.config
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - type: bind
+        source: ./
+        target: /root
+```
+
+Após apontar os arquivos corretos, gere a imagem novamente:
+```bash
+docker compose build
+```
+
+Para rodar apenas uma VPN:
+```bash
+docker compose up -d vpn01
+```
+
+Ou para rodar todas as VPNs configuradas:
+```bash
+docker compose up -d
+```
+
+Depois de rodar o container, confira a **tabela de rotas** para verificar se as rotas da VPN estão configuradas.
 
 ---
 
-This README provides clear instructions in both English and Portuguese, making the project accessible to a broader audience.
+Agora você tem uma solução prática para gerenciar várias VPNs simultaneamente usando Docker!
