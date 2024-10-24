@@ -62,7 +62,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: vpntrinus
+    image: vpnbase
     environment:
       - VPNFILE=vpn01.config
     network_mode: "host"
@@ -77,7 +77,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: vpntrinus
+    image: vpnbase
     environment:
       - VPNFILE=vpn02.config
     network_mode: "host"
@@ -167,7 +167,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: vpntrinus
+    image: vpnbase
     environment:
       - VPNFILE=vpn01.config
     network_mode: "host"
@@ -182,7 +182,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: vpntrinus
+    image: vpnbase
     environment:
       - VPNFILE=vpn02.config
     network_mode: "host"

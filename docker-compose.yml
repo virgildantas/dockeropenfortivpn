@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: docker-openfortivpn
+    image: vpnbase
     network_mode: "host"
     privileged: true
     volumes:
