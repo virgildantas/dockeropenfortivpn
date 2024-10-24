@@ -24,7 +24,6 @@ After ensuring Docker is installed, follow the steps below to configure and run 
 
 1. **Edit the `vpn.config` file**:
     ```plaintext
-    vpn.config:
     host = 0.0.0.0
     port = 443
     username = user.vpn
@@ -45,7 +44,7 @@ After ensuring Docker is installed, follow the steps below to configure and run 
 
 3. **Run the container to establish the VPN**:
    ```bash
-   docker compose up
+   docker compose up -d
    ```
 
 ---
@@ -80,7 +79,6 @@ Após garantir que o Docker está instalado, siga os passos abaixo para configur
 
 1. **Edite o arquivo `vpn.config`**:
     ```plaintext
-    vpn.config:
     host = 0.0.0.0
     port = 443
     username = user.vpn
